@@ -14,8 +14,9 @@ import importlib
 import traceback
 from pathlib import Path
 
-DATA_DIR = "data"
-PRK_DIR  = Path("prk")
+DATA_DIR   = "data"
+PRK_DIR    = Path("prk")
+MODELS_DIR = Path("models")
 PRK_DIR.mkdir(exist_ok=True)
 
 MODEL_FILES = [
@@ -27,14 +28,14 @@ MODEL_FILES = [
 
 
 def load_model_class(module_name: str):
-    path = Path(f"{module_name}.py")
+    path = MODELS_DIR / f"{module_name}.py"
     if not path.exists():
-        raise FileNotFoundError(f"{module_name}.py introuvable")
+        raise FileNotFoundError(f"models/{module_name}.py introuvable")
     spec = importlib.util.spec_from_file_location(module_name, path)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     if not hasattr(mod, "PortfolioChallengeModel"):
-        raise AttributeError(f"PortfolioChallengeModel absent de {module_name}.py")
+        raise AttributeError(f"PortfolioChallengeModel absent de models/{module_name}.py")
     return mod.PortfolioChallengeModel
 
 

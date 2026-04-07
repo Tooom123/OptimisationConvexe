@@ -9,19 +9,20 @@ Construire un modèle qui prédit les retours de 12 actifs financiers et optimis
 ```
 .
 ├── data/
-│   ├── X_train.parquet   # Features d'entraînement
-│   ├── R_train.parquet   # Retours réels (vérité terrain)
-│   └── X_test.parquet    # Features de test
+│   ├── X_train.parquet        # Features d'entraînement
+│   ├── R_train.parquet        # Retours réels (vérité terrain)
+│   └── X_test.parquet         # Features de test
 │
-├── model_Tom.py          # Modèle de Tom (référence)
-├── model_Aymeric.py      # ← TON FICHIER (Aymeric)
-├── model_Artus.py        # ← TON FICHIER (Artus)
-├── model_Estebane.py     # ← TON FICHIER (Estebane)
+├── models/
+│   ├── model_Tom.py           # Modèle de Tom (référence)
+│   ├── model_Aymeric.py       # ← TON FICHIER (Aymeric)
+│   ├── model_Artus.py         # ← TON FICHIER (Artus)
+│   └── model_Estebane.py      # ← TON FICHIER (Estebane)
 │
-├── portfolio_model.py    # Exemple complet avec Adam + Ledoit-Wolf (à lire !)
-├── main.py               # Lance tous les modèles et affiche le classement
-├── evaluate.py           # Calcule Sharpe, CumRet, MSE sur les soumissions
-└── prk/                  # Parquets générés automatiquement
+├── portfolio_model.py         # Exemple complet avec Adam + Ledoit-Wolf (à lire !)
+├── main.py                    # Lance tous les modèles et affiche le classement
+├── evaluate.py                # Calcule Sharpe, CumRet, MSE sur les soumissions
+└── prk/                       # Parquets générés automatiquement
 ```
 
 ## Ce que tu dois faire
