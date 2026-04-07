@@ -54,11 +54,11 @@ def validate(sub: pd.DataFrame, path: str) -> list[str]:
 
 
 def score(sub: pd.DataFrame, r_train: pd.DataFrame) -> dict:
-    merged = r_train[["id", "date"] + ASSET_COLS].merge(
-        sub[["id", "date"] + PRED_COLS + WEIGHT_COLS],
-        on=["id", "date"],
-        how="inner",
-    )
+    r = r_train[["id", "date"] + ASSET_COLS].copy()
+    s = sub[["id", "date"] + PRED_COLS + WEIGHT_COLS].copy()
+    r["date"] = pd.to_datetime(r["date"])
+    s["date"] = pd.to_datetime(s["date"])
+    merged = r.merge(s, on=["id", "date"], how="inner")
     if merged.empty:
         return {"error": "aucune ligne commune avec R_train"}
 
